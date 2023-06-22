@@ -54,6 +54,20 @@ export class UserService implements IUserRepository {
         }
     }
 
+    async checkUser (model: IPerson): Promise<Person | null>  {
+        const userRepository = getRepository(Person);
+        const { email, password } = model;
+
+        try {
+            const findUser = await userRepository.findOne({
+                where: [{ email, password }],
+            });
+            return findUser;
+        } catch (e) {
+            return Promise.reject();
+        }
+    }
+
     async delete(id: number): Promise<Person | null> {
         const userRepository = getRepository(Person);
         let user: Person;

@@ -2,6 +2,7 @@ import { createConnection } from "typeorm";
 import express from 'express';
 import { Person } from "./entities/Person";
 import router from "./routes";
+import { Country } from "./entities/Country";
 
 const app = express();
 
@@ -13,7 +14,7 @@ const main = async () => {
             port: 5432,
             username: "postgres",
             database: 'test2',
-            entities: [Person],
+            entities: [Person, Country],
             synchronize: true
         })
 

@@ -6,4 +6,5 @@ export interface IUserRepository {
      add(user: Person): Promise<Person | null>;
      delete(id: number): Promise<Person | null>;
      update (model: Person, id: number): Promise<Person | null>;
+     checkUser (model: Person): Promise<Person | null>;
 }

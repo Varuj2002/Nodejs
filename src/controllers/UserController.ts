@@ -44,6 +44,18 @@ class UserController {
       return res.json(user);
   }).catch(err => {})
 }
+public static login = (req: Request, res: Response) => {
+  service.checkUser(req.body).then(user => {
+      if(!user?.id){
+        return res.json({
+          message: 'User does not exist'
+        })
+      }
+      return res.json(user);
+  }).catch(err => {
+    console.log('eerere', err);
+  })
+}
 
 }
 

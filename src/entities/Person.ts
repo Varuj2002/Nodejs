@@ -5,7 +5,10 @@ import {
 	BaseEntity,
     CreateDateColumn,
     UpdateDateColumn,
+	OneToOne,
+	JoinTable,
 } from 'typeorm';
+import { Country } from './Country';
 
 @Entity('person')
 export class Person extends BaseEntity {
@@ -19,6 +22,16 @@ export class Person extends BaseEntity {
 
 	@Column()
 	last_name: string;
+
+	@Column({
+        nullable: true
+    })
+	country_code: string;
+
+	@Column({
+        nullable: true
+    })
+	password: string;
 
 	@Column({
 		unique: true,
@@ -36,4 +49,7 @@ export class Person extends BaseEntity {
 
 	@UpdateDateColumn()
 	updated_at: Date;
+
+	@OneToOne(() => Country, (country) => country.country_code)
+	country: Country
 }
