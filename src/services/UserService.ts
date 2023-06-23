@@ -42,6 +42,7 @@ export class UserService implements IUserRepository {
             .createQueryBuilder("person")
             .leftJoinAndSelect("person.country", "country")
             .where("person.country_code = :country_code", { country_code: "AM" })
+            // .take(5) // For pagination
             .getMany()
 
             console.log('getUsersWidthQueryBuilder', getUsersWidthQueryBuilder);
