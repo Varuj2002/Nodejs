@@ -7,6 +7,7 @@ import {
     UpdateDateColumn,
 	OneToOne,
 	JoinTable,
+	JoinColumn,
 } from 'typeorm';
 import { Country } from './Country';
 
@@ -44,6 +45,14 @@ export class Person extends BaseEntity {
 	})
 	card_number: string;
 
+	
+
+	@Column({
+		nullable: true
+
+	})
+	countryId: string;
+
     @CreateDateColumn()
 	created_at: Date;
 
@@ -51,5 +60,7 @@ export class Person extends BaseEntity {
 	updated_at: Date;
 
 	@OneToOne(() => Country, (country) => country.country_code)
+	@JoinColumn({ name: 'countryId', referencedColumnName: 'id' })
+	// @JoinColumn({ country_code: 'country_code', referencedColumnName: 'country_code' })
 	country: Country
 }
